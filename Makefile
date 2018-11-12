@@ -9,8 +9,8 @@ tester:
 	docker-compose run --rm tester bash
 
 pip-compile:
-	pip-compile requirements.in
-	pip-compile requirements-dev.in
+	pip-compile --generate-hashes --output-file requirements.txt requirements.in
+	pip-compile --generate-hashes --output-file requirements-dev.txt requirements-dev.in
 
 test:
 	nosetests
