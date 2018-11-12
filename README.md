@@ -10,7 +10,7 @@ create a docker-machine if necessary (you're not on a linux machine)
 make docker-build
 ```
 
-## start a development server
+## start a production-like development server
 ```bash
 docker-compose up -d # to start
 docker-compse down # to kill
@@ -19,6 +19,8 @@ docker-compse down # to kill
 ## start an interactive development server
 ```bash
 make server
+# you'll be attached to a tty in the container, then:
+/flask.sh
 ```
 
 ## start a testing container

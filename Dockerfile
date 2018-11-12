@@ -25,9 +25,11 @@ ADD ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 # add scripts
-COPY scripts/flask.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/flask.sh && ln -s /usr/local/bin/flask.sh /
+COPY scripts/*.sh /app/scripts/
+RUN chmod 755 -R /app/scripts/*.sh && \
+    cp -r /app/scripts/*.sh /usr/local/bin/ && \
+    ln -s /usr/local/bin/*.sh /
 
 ADD . /app
 
-CMD ["/flask.sh"]
+CMD ["/gunicorn.sh"]
