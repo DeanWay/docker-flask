@@ -1,0 +1,7 @@
+FROM dockerflask_app:latest
+
+WORKDIR /app
+ADD ./requirements-dev.txt /app/requirements-dev.txt
+RUN pip install -r requirements-dev.txt
+
+CMD ["sh"]
