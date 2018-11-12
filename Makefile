@@ -2,10 +2,13 @@
 docker-build:
 	docker-compose build
 
-server:
+db:
+	docker-compose up -d db
+
+server: db
 	docker-compose run --rm --service-ports app bash
 
-tester:
+tester: db
 	docker-compose run --rm tester bash
 
 pip-compile:
