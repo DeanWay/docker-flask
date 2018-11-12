@@ -18,6 +18,12 @@ RUN apk -q --no-cache add mariadb-client-libs
 WORKDIR /app
 ADD ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
+
+# add scripts
+RUN apk add --update bash && rm -rf /var/cache/apk/*
+COPY scripts/flask.sh /usr/local/bin/
+RUN chmod 755 /usr/local/bin/flask.sh && ln -s /usr/local/bin/flask.sh /
+
 ADD . /app
 
-CMD ["python", "src/app.py"]
+CMD ["/flask.sh"]
